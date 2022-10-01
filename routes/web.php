@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SpotifyConnectController;
 use App\Http\Controllers\SpotifyController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -25,10 +26,12 @@ Route::middleware(['auth', 'verified'])->group(function() {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/connect/spotify/redirect', [SpotifyConnectController::class, 'redirect']);
+    Route::get('/connect/spotify/callback', [SpotifyConnectController::class, 'callback']);
+
+    // Temp controller to test
     Route::get('/s/{command}', SpotifyController::class);
     
 });
 
-
 require __DIR__.'/auth.php';
-require __DIR__.'/socialite.php';

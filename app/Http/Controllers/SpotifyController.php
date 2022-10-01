@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\SpotifyApiService;
-
+use Exception;
 
 class SpotifyController extends Controller
 {
@@ -22,11 +22,10 @@ class SpotifyController extends Controller
     public function getPlaylists() 
     {
         try {
-            $playlists = $this->spotify->api->getMyPlaylists();
-            dump($playlists);
+            return $this->spotify->api->getMyPlaylists();
         }
         catch (\Exception $e) {
-            dump($e);
+            $this->handleException($e);
         }
     }
 
@@ -34,9 +33,18 @@ class SpotifyController extends Controller
     {
         try {
             return $this->spotify->api->me();
-        } catch (\Exception $e) {
-            dump($e);
         }
+        catch (\Exception $e) {
+            $this->handleException($e);
+        }
+    }
+
+    private function handleException(\Exception $e)
+    {
+        // is it a connection issue?
+
+        // is it a timeput issue?
+        dump($e);
     }
 
 }
