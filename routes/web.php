@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SpotifyController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -18,9 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function() {
+    
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/s/{command}', SpotifyController::class);
+    
+});
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/socialite.php';

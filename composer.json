@@ -8,11 +8,10 @@
         "php": "^8.0.2",
         "doctrine/dbal": "^3.4",
         "guzzlehttp/guzzle": "^7.2",
+        "jwilsson/spotify-web-api-php": "^5.3",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
-        "laravel/socialite": "^5.5",
-        "laravel/tinker": "^2.7",
-        "socialiteproviders/spotify": "^4.1"
+        "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

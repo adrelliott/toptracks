@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('spotify_id')->nullable();
             $table->string('spotify_avatar')->nullable();
             $table->string('spotify_profile_url')->nullable();
-            $table->string('spotify_token')->nullable();
-            $table->string('spotify_refresh_token')->nullable();
+            $table->text('spotify_refresh_token', 512)->nullable();
         });
     }
 
@@ -33,7 +32,6 @@ return new class extends Migration
             $table->dropColumn('spotify_id');
             $table->dropColumn('spotify_avatar');
             $table->dropColumn('spotify_profile_url');
-            $table->dropColumn('spotify_token');
             $table->dropColumn('spotify_refresh_token');
         });
     }

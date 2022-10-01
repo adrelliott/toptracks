@@ -18,10 +18,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            \SocialiteProviders\Spotify\SpotifyExtendSocialite::class.'@handle',
-            // Add any other providers from https://socialiteproviders.com/
-        ],
+        // \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+        //     \SocialiteProviders\Spotify\SpotifyExtendSocialite::class.'@handle',
+        //     // Add any other providers from https://socialiteproviders.com/
+        // ],
     ];
 
     /**
