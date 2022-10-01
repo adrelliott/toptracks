@@ -24,6 +24,11 @@ class User extends Authenticatable
         'github_id',
         'github_token',
         'github_refresh_token',
+        'spotify_id',
+        'spotify_avatar',
+        'spotify_profile_url',
+        'spotify_token',
+        'spotify_refresh_token'
     ];
 
     /**

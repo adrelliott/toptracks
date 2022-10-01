@@ -6,14 +6,30 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
+    // return Socialite::driver('github')->redirect();
+    return Socialite::driver('spotify')->redirect();
 });
  
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
+// Route::get('/auth/callback', function () {
+//     $user = Socialite::driver('github')->user();
  
-    // $user->token
+//     // $user->token
+// });
+
+Route::get('/auth/callback/spotify', function () {
+    $spotifyUser = Socialite::driver('spotify')->user();
+    $user = Auth::user();
+
+    $user->spotify_id = $spotifyUser->id;
+    $user->spotify_avatar = $spotifyUser->avatar;
+    $user->spotify_profile_url = $spotifyUser->profileUrl;
+    $user->spotify_token = $spotifyUser->token;
+    $user->spotify_refresh_token = $spotifyUser->refreshToken;
+    $user->save();
+ 
+    return redirect('/dashboard');
 });
+
 
 Route::get('/auth/callback/github', function () {
     $githubUser = Socialite::driver('github')->user();
@@ -32,9 +48,3 @@ Route::get('/auth/callback/github', function () {
     return redirect('/dashboard');
 });
 
-// remember_token => null
-//     created_at => 2022-10-01 10:39:11
-//     updated_at => 2022-10-01 11:04:45
-//     github_id => 2983813
-//     github_token => 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
-//     github_refresh_token => null
