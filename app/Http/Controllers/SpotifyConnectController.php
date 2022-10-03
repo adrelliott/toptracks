@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Crypt;
 use Laravel\Socialite\Facades\Socialite;
 
 class SpotifyConnectController extends Controller
@@ -27,7 +28,7 @@ class SpotifyConnectController extends Controller
         $user->spotify_id = $spotifyUser->id;
         $user->spotify_avatar = $spotifyUser->avatar;
         $user->spotify_profile_url = $spotifyUser->profileUrl;
-        $user->spotify_refresh_token = $spotifyUser->refreshToken;
+        $user->spotify_refresh_token = Crypt::encryptString($spotifyUser->refreshToken);
         $user->save();
     
         return redirect('/dashboard');

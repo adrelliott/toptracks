@@ -31,7 +31,7 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 59),
+    'lifetime' => env('SESSION_LIFETIME', 59),  //1 minute less than the Spotify acces token lives
 
     'expire_on_close' => false,
 
